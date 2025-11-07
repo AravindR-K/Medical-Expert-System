@@ -8,4 +8,4 @@ Communication - REST APIs (JSON) / Retrofit in Kotlin → Spring Boot → Python
 Cloud Deployment - Render / Railway / Google Cloud / Hugging Face Spaces
 AI Recommendation Model - OpenAI API / local LLM (like Llama 3)
 
-kotlin frontend + python backend (flask server)
+kotlin frontend + python backend (spring-boot server)
