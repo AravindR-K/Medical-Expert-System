@@ -11,6 +11,7 @@ import androidx.navigation.navArgument
 import com.example.medexpertsystem.ui.camera.CameraScreen
 import com.example.medexpertsystem.ui.capture.CaptureReportScreen
 import com.example.medexpertsystem.ui.preview.PreviewScreen
+import com.example.medexpertsystem.ui.preview.PdfPreviewScreen
 import com.example.medexpertsystem.ui.result.ResultScreen
 
 @Composable
@@ -23,8 +24,18 @@ fun NavGraph() {
     ) {
         composable("capture") {
             CaptureReportScreen(
-                onCaptureClick = {
+                onCameraClick = {
                     navController.navigate("camera")
+                },
+                onGalleryImageSelected = { imageUri ->
+                    navController.navigate(
+                        "preview/${Uri.encode(imageUri.toString())}"
+                    )
+                },
+                onPdfSelected = { pdfUri ->
+                    navController.navigate(
+                        "pdfPreview/${Uri.encode(pdfUri.toString())}"
+                    )
                 }
             )
         }
@@ -49,11 +60,9 @@ fun NavGraph() {
                     type = NavType.StringType
                 }
             )
-        ) { backStackEntry ->
+        ) { entry ->
             val imageUri = Uri.parse(
-                Uri.decode(
-                    backStackEntry.arguments?.getString("imageUri") ?: ""
-                )
+                Uri.decode(entry.arguments?.getString("imageUri") ?: "")
             )
 
             PreviewScreen(
@@ -62,6 +71,26 @@ fun NavGraph() {
                     navController.navigate("result")
                 },
                 onRetakeClick = {
+                    navController.popBackStack()
+                }
+            )
+        }
+
+        composable(
+            route = "pdfPreview/{pdfUri}",
+            arguments = listOf(
+                navArgument("pdfUri") {
+                    type = NavType.StringType
+                }
+            )
+        ) { entry ->
+            val pdfUri = Uri.parse(
+                Uri.decode(entry.arguments?.getString("pdfUri") ?: "")
+            )
+
+            PdfPreviewScreen(
+                pdfUri = pdfUri,
+                onBackClick = {
                     navController.popBackStack()
                 }
             )

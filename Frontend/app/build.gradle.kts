@@ -63,4 +63,6 @@ dependencies {
     implementation("androidx.camera:camera-view:1.4.2")
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.10.0")
     implementation("io.coil-kt:coil-compose:2.7.0")
+    // Google ML Kit - Bundled Text Recognition (Offline OCR)
+    implementation("com.google.mlkit:text-recognition:16.0.1")
 }
