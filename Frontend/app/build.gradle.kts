@@ -65,4 +65,6 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.7.0")
     // Google ML Kit - Bundled Text Recognition (Offline OCR)
     implementation("com.google.mlkit:text-recognition:16.0.1")
+    // OpenCV - Image processing and table grid detection
+    implementation("org.opencv:opencv:4.14.0")
 }
